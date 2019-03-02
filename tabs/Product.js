@@ -11,6 +11,8 @@ class ProductScreen extends Component {
   }
 }
 
+export default ProductScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, button } from 'react-native';
 
- class HomeScreen extends Component {
+class HistoryScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text style={styles.welcome}>this is Home</Text>
+      <Text style={styles.welcome}>this is History</Text>
     </View>
     );
   }
 }
 
-export default HomeScreen;
+export default HistoryScreen;
 
 const styles = StyleSheet.create({
   container: {

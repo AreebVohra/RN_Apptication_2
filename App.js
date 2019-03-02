@@ -5,6 +5,11 @@ import {
   createMaterialTopTabNavigator,
 } from 'react-navigation';
 
+import HomeScreen from './tabs/Home';
+import ProductScreen from './tabs/Product';
+import HistoryScreen from './tabs/History';
+import StatisticsScreen from './tabs/Statistics'
+
 export default class App extends Component {
   render() {
     return (
@@ -15,51 +20,35 @@ export default class App extends Component {
   }
 }
 
-class Home extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-}
-
-class Products extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
-
-class History extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
-
-class Statistics extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
-
 const TabNavigator = createMaterialTopTabNavigator({
-  Home: { screen: Home },
-  Products: { screen: Products },
-  History: { screen: History },
-  Statistics: { screen: Statistics }
-});
+  Home: HomeScreen,
+  Products: ProductScreen,
+  History: HistoryScreen,
+  Statistics: StatisticsScreen,
+}, {
+    defaultNavigationOptions: {
+      headerStyle: {
+
+      }
+    },
+    tabBarOptions: {
+      activeTintColor: '#f2f2f2',
+      activeBackgroundColor: '#2EC4B6',
+      labelStyle: {
+        fontSize: 10,
+        fontWeight: 'bold',
+      },
+      tabStyle: {
+        height: 70,
+      },
+      indicatorStyle: {
+        backgroundColor: 'white',
+        height: 3,
+      },
+      style: {
+      },
+      initialRouteName: 'Home',
+    }
+  });
 
 const AppContainer = createAppContainer(TabNavigator);

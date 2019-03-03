@@ -5,7 +5,7 @@ class StatisticsScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text style={styles.welcome}>this is History</Text>
+      <Text style={styles.welcome}>this is Statistics</Text>
     </View>
     );
   }

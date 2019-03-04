@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, ImageBackground, StatusBar } from 'react-native';
+import { Text, View, SafeAreaView, StyleSheet, StatusBar } from 'react-native';
 import { Container, Header, Left, Title, Right, Body, Button, Icon } from 'native-base';
-
-
-import {
-  createAppContainer,
-  createMaterialTopTabNavigator,
-} from 'react-navigation';
-
+import { createAppContainer, createMaterialTopTabNavigator, } from 'react-navigation';
 import HomeScreen from './tabs/Home';
 import ProductScreen from './tabs/Product';
 import HistoryScreen from './tabs/History';
 import StatisticsScreen from './tabs/Statistics'
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class App extends Component {
   componentDidMount() {
@@ -19,12 +14,12 @@ export default class App extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <ImageBackground source={require('./gradient.jpg')} style={{ flex: 1, width: null }}>
+      <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#9f95f0', '#71ceef', '#80e8ed']} style={styles.linearGradient}>
+        <SafeAreaView style={{ flex: 1 }}>
           <Container style={{ backgroundColor: 'transparent' }}>
             <Header noLeft noShadow
-              indicatorStyle={{ backgroundColor: 'white', height: 3, }} 
-              style={{ backgroundColor: 'rgba(52, 52, 52, 0.4)', height: 60 }}>
+              indicatorStyle={{ backgroundColor: 'white', height: 3, }}
+              style={{ backgroundColor: 'rgba(52, 52, 52, 0.4)', height: 50 }}>
               <Left></Left>
               <Body>
                 <Title>Header</Title>
@@ -37,11 +32,18 @@ export default class App extends Component {
             </Header>
             <AppContainer />
           </Container>
-        </ImageBackground>
-      </SafeAreaView>
+        </SafeAreaView>
+      </LinearGradient>
     );
   }
 }
+
+
+const styles = StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+  },
+});
 
 const TabNavigator = createMaterialTopTabNavigator({
   Home: HomeScreen,
@@ -65,8 +67,7 @@ const TabNavigator = createMaterialTopTabNavigator({
       },
 
       tabStyle: {
-        height: 50,
-
+        height: 60,
       },
       indicatorStyle: {
         backgroundColor: 'white',

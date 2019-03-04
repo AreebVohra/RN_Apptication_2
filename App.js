@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StatusBar, StyleSheet, ImageBackground } from 'react-native';
-import { Container, Header, Tab, Tabs, StyleProvider } from 'native-base';
+import { Container, Header, Left, Title, Right, Body, Button, Icon, Tab, Tabs, StyleProvider } from 'native-base';
 import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/material';
 import HomeScreen from './tabs/Home';
@@ -17,8 +17,22 @@ export default class App extends Component {
         <StatusBar hidden />
         <StyleProvider style={getTheme(material)}>
           <Container style={{ backgroundColor: 'transparent' }}>
-            <Header style={{ backgroundColor: 'rgba(52, 52, 52, 0.4)', height: 60 }} />
-            <Tabs >
+            <Header style={{ backgroundColor: 'rgba(52, 52, 52, 0.4)', height: 60 }} >
+              <Left>
+                <Button transparent>
+                  <Icon name='arrow-back' />
+                </Button>
+              </Left>
+              <Body>
+                <Title>Header</Title>
+              </Body>
+              <Right>
+                <Button transparent>
+                  <Icon name='menu' />
+                </Button>
+              </Right>
+            </Header>
+            <Tabs tabContainerStyle={{ height: 60 }}>
               <Tab style={{ backgroundColor: 'transparent' }} heading="Home">
                 <HomeScreen />
               </Tab>

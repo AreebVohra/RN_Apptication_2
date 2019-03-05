@@ -14,19 +14,24 @@ export default class App extends Component {
   }
   render() {
     return (
-      <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#9f95f0', '#71ceef', '#80e8ed']} style={styles.linearGradient}>
+      <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        locations={[0, 0.6, 1.0]}
+        colors={['#9f95f0', '#71ceef', '#80e8ed']}
+        style={{ flex: 1 }}>
         <SafeAreaView style={{ flex: 1 }}>
           <Container style={{ backgroundColor: 'transparent' }}>
             <Header noLeft noShadow
               indicatorStyle={{ backgroundColor: 'white', height: 3, }}
-              style={{ backgroundColor: 'rgba(52, 52, 52, 0.4)', height: 50 }}>
+              style={{ backgroundColor: 'rgba(52, 52, 52, 0.4)', height: 60 }}>
               <Left></Left>
               <Body>
                 <Title>Header</Title>
               </Body>
               <Right>
                 <Button transparent>
-                  <Icon name='settings' />
+                  <Icon style={{fontSize:30}} type='AntDesign' name='setting' />
                 </Button>
               </Right>
             </Header>
@@ -40,9 +45,7 @@ export default class App extends Component {
 
 
 const styles = StyleSheet.create({
-  linearGradient: {
-    flex: 1,
-  },
+
 });
 
 const TabNavigator = createMaterialTopTabNavigator({
@@ -57,17 +60,18 @@ const TabNavigator = createMaterialTopTabNavigator({
       }
     },
     tabBarOptions: {
-      activeTintColor: '#f2f2f2',
-      activeBackgroundColor: '#2EC4B6',
+      activeTintColor: 'white',
+      upperCaseLabel: false,
       labelStyle: {
-        fontSize: 13,
-        fontWeight: 'bold',
+        fontSize: 17,
+        fontWeight: '300',
         margin: 0,
-        padding: 0
+        padding: 0,
+
       },
 
       tabStyle: {
-        height: 60,
+        height: 50,
       },
       indicatorStyle: {
         backgroundColor: 'white',

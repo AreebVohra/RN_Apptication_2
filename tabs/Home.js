@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, CheckBox, TouchableOpacity, Picker } from 'react-native';
+import { StyleSheet, Text, View, TextInput, CheckBox, TouchableOpacity, Picker, Image, ScrollView, Dimensions } from 'react-native';
 import { Icon } from 'native-base';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment from 'moment';
+
+const { width } = Dimensions.get('window')
 
 class HomeScreen extends Component {
   constructor() {
@@ -50,17 +52,20 @@ class HomeScreen extends Component {
         <Text style={styles.welcome}>Add a New Product</Text>
         <View style={styles.productsection}>
           <View style={styles.productviews}>
-            <Text>Pro price   </Text>
-            <TextInput style={styles.productlabels} >
+            <Text>Pro price  </Text>
+            <View style={styles.labelView}>
               <Icon type='FontAwesome' name='dollar' style={{ fontSize: 15, color: 'gray' }} />
-            </TextInput>
+              <TextInput style={styles.productlabels} />
+            </View>
           </View>
           <View style={styles.productviews}>
             <Text>Bid time    </Text>
-            <TextInput style={styles.productlabels} onFocus={this._showPicker}>
+            <View style={styles.labelView}>
               <Icon type='FontAwesome' name='calendar' style={{ fontSize: 15, color: 'gray' }} />
-              {this.state.chosenDate}
-            </TextInput>
+              <TextInput style={styles.productlabels} onFocus={this._showPicker}>
+                {this.state.chosenDate}
+              </TextInput>
+            </View>
             <DateTimePicker
               isVisible={this.state.isVisible}
               onConfirm={this._handlePicker}
@@ -74,18 +79,7 @@ class HomeScreen extends Component {
           </View>
           {
             this.state.showMe ?
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  width: 290,
-                  padding: 5,
-                  justifyContent: 'center',
-                  borderTopColor: 'lightgray',
-                  borderBottomColor: 'lightgray',
-                  borderTopWidth: 1,
-                  borderBottomWidth: 1,
-                }}>
+              <View style={styles.pickerView}>
                 <Text style={{ fontSize: 14 }}>SSN :</Text>
                 <Picker selectedValue={this.state.ssn}
                   style={styles.pickerstyle}
@@ -109,6 +103,19 @@ class HomeScreen extends Component {
             <Icon type='FontAwesome' onPress={() => this._iconbtn()} name={iconName} style={{ fontSize: 25, color: 'gray' }} />
           </View>
         </View>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: 360, marginTop: 30, marginBottom: 10, }}>
+          <Text>SSA</Text>
+          <Text>View All  <Icon type='FontAwesome' name='angle-right' style={{ fontSize: 20, color: 'white' }} /></Text>
+        </View>
+        <ScrollView style={{ marginBottom: 10, width: width }} contentContainerStyle={{ alignItems: 'center' }} >
+          <View style={styles.priductItems}>
+            <Image style={{ width: 50, height: 30 }} source={require('../pakflag.png')}></Image>
+            <Text>4 *** 1234</Text>
+            <Text>$ 400</Text>
+            <Text>1 hour</Text>
+          </View>
+          
+        </ScrollView>
       </View >
     );
   }
@@ -146,17 +153,45 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 10,
+    elevation: 15,
   },
   productlabels: {
-    borderColor: 'lightgray',
-    borderWidth: 1,
-    position: 'relative',
-    width: 160,
     paddingBottom: 0,
     paddingTop: 0,
     paddingLeft: 5,
     paddingRight: 0,
-    alignItems: 'center'
+    width: 160,
+  },
+  labelView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: 'lightgray',
+    borderWidth: 1,
+    paddingLeft: 5,
+    width: 160,
+  },
+  pickerView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 290,
+    padding: 5,
+    justifyContent: 'center',
+    borderTopColor: 'lightgray',
+    borderBottomColor: 'lightgray',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+  },
+  priductItems: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 360, height: 70,
+    backgroundColor: '#EAEAEA',
+    borderRadius: 5, elevation: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginTop: 5,
+    marginBottom: 5
   },
   productviews: {
     flexDirection: 'row',

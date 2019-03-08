@@ -1,21 +1,49 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, CheckBox, TouchableOpacity, Picker, Image, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TextInput, CheckBox, TouchableOpacity, Picker, Image, ScrollView, Dimensions, FlatList } from 'react-native';
 import { Icon } from 'native-base';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment from 'moment';
+import firebase from 'firebase';
 
 const { width } = Dimensions.get('window')
 
 class HomeScreen extends Component {
   constructor() {
     super()
+
     this.state = {
       isVisible: false,
       chosenDate: '',
-      ssn: '',
+      pickerSsn: '',
       toggle: false,
-      showMe: false
+      showMe: false,
+      datacount: [1],
+      ssn: [],
+      proPrice: 400,
+      bidTime: '4:30 AM'
     }
+  }
+
+  componentDidMount() {
+
+    const config = {
+      apiKey: "AIzaSyDhr0zYQYNjQZQTkGVVjvxTKVl40HHtoPM",
+      authDomain: "rn-application-2.firebaseapp.com",
+      databaseURL: "https://rn-application-2.firebaseio.com",
+      projectId: "rn-application-2",
+      storageBucket: "rn-application-2.appspot.com",
+      messagingSenderId: "1018617557182",
+    };
+
+    firebase.initializeApp(config);
+    const rootRef = firebase.database().ref('users');
+
+    const ssnRef = rootRef.child('ssn');
+    ssnRef.on('value', snapshot => {
+      this.setState({
+        ssn: snapshot.val()
+      });
+    });
   }
 
   _handlePicker = (datetime) => {
@@ -43,6 +71,7 @@ class HomeScreen extends Component {
       showMe: !this.state.showMe
     })
   }
+
 
   render() {
     const { toggle } = this.state
@@ -81,10 +110,10 @@ class HomeScreen extends Component {
             this.state.showMe ?
               <View style={styles.pickerView}>
                 <Text style={{ fontSize: 14 }}>SSN :</Text>
-                <Picker selectedValue={this.state.ssn}
+                <Picker selectedValue={this.state.pickerSsn}
                   style={styles.pickerstyle}
                   mode={'dropdown'}
-                  onValueChange={(itemValue, itemIndex) => this.setState({ ssn: itemValue })}>
+                  onValueChange={(itemValue, itemIndex) => this.setState({ pickerSsn: itemValue })}>
                   <Picker.Item label="1234" value="1" />
                   <Picker.Item label="5678" value="2" />
                   <Picker.Item label="9101" value="3" />
@@ -107,15 +136,19 @@ class HomeScreen extends Component {
           <Text>SSA</Text>
           <Text>View All  <Icon type='FontAwesome' name='angle-right' style={{ fontSize: 20, color: 'white' }} /></Text>
         </View>
-        <ScrollView style={{ marginBottom: 10, width: width }} contentContainerStyle={{ alignItems: 'center' }} >
-          <View style={styles.priductItems}>
-            <Image style={{ width: 50, height: 30 }} source={require('../pakflag.png')}></Image>
-            <Text>4 *** 1234</Text>
-            <Text>$ 400</Text>
-            <Text>1 hour</Text>
-          </View>
-          
-        </ScrollView>
+        <FlatList
+          style={{ marginBottom: 10, width: width }}
+          contentContainerStyle={{ alignItems: 'center' }}
+          data={this.state.datacount}
+          renderItem={({ item }) =>
+            <View style={styles.priductItems}>
+              <Image style={{ width: 50, height: 30 }} source={require('../pakflag.png')}></Image>
+              <Text>{this.state.ssn}</Text>
+              <Text>$ {this.state.proPrice}</Text>
+              <Text>{this.state.bidTime}</Text>
+            </View>
+          }
+        ></FlatList>
       </View >
     );
   }

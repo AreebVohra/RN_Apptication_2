@@ -78,6 +78,7 @@
 		ED5EC9D36918442AAFB23BC7 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458CDF3457074100AD7DEB1A /* libBVLinearGradient.a */; };
 		9F7AFE737B6D42918E1D6874 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B544E09E2DA4843B2D300A3 /* libRNSVG.a */; };
 		842392590D3A48D6935052BE /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F77C60CD6F41ADB108E177 /* libRNSVG-tvOS.a */; };
+		30A8DE6BAF5744DFA40A3D2F /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD0EBFAC2F6441ED8969A8FE /* libRNFirebase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -428,6 +429,8 @@
 		4C60FABA00D54F40B3603A97 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; name = "RNSVG.xcodeproj"; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		0B544E09E2DA4843B2D300A3 /* libRNSVG.a */ = {isa = PBXFileReference; name = "libRNSVG.a"; path = "libRNSVG.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		56F77C60CD6F41ADB108E177 /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; name = "libRNSVG-tvOS.a"; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		8748141FFB604886B5C6A6C8 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FD0EBFAC2F6441ED8969A8FE /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +463,7 @@
 				F3E5395768AF482EA514D2BD /* libRNVectorIcons.a in Frameworks */,
 				ED5EC9D36918442AAFB23BC7 /* libBVLinearGradient.a in Frameworks */,
 				9F7AFE737B6D42918E1D6874 /* libRNSVG.a in Frameworks */,
+				30A8DE6BAF5744DFA40A3D2F /* libRNFirebase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +659,7 @@
 				FC3C341AEC064A968C0FC0C0 /* RNVectorIcons.xcodeproj */,
 				8721A4A34E004F2F8CCF50D4 /* BVLinearGradient.xcodeproj */,
 				4C60FABA00D54F40B3603A97 /* RNSVG.xcodeproj */,
+				8748141FFB604886B5C6A6C8 /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1363,6 +1368,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1370,6 +1376,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Debug;
@@ -1397,6 +1404,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1404,6 +1412,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Release;
@@ -1430,6 +1439,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Debug;
@@ -1455,6 +1465,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Release;
@@ -1490,6 +1501,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1497,6 +1509,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Debug;
@@ -1532,6 +1545,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1539,6 +1553,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Release;
@@ -1573,6 +1588,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1580,6 +1596,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Debug;
@@ -1614,6 +1631,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1621,6 +1639,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Release;

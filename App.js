@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Text, View, SafeAreaView, StyleSheet, StatusBar } from 'react-native';
 import { Container, Header, Left, Title, Right, Body, Button, Icon } from 'native-base';
 import { createAppContainer, createMaterialTopTabNavigator, } from 'react-navigation';
-import HomeScreen from './tabs/Home';
-import ProductScreen from './tabs/Product';
-import HistoryScreen from './tabs/History';
-import StatisticsScreen from './tabs/Statistics'
+import HomeScreen from './screens/Home';
+import ProductScreen from './screens/Product';
+import HistoryScreen from './screens/History';
+import StatisticsScreen from './screens/Statistics'
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class App extends Component {

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, CheckBox, TouchableOpacity, Picker, Image, ScrollView, Dimensions, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TextInput, CheckBox, TouchableOpacity, Picker, Image, Dimensions, FlatList, Alert,Keyboard } from 'react-native';
 import { Icon } from 'native-base';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment from 'moment';
-import firebase from 'firebase';
+import { db } from '../services/db'
 
+let itemsRef = db.ref('/users');
 const { width } = Dimensions.get('window')
 
 class HomeScreen extends Component {
@@ -17,32 +18,46 @@ class HomeScreen extends Component {
       pickerSsn: '',
       toggle: false,
       showMe: false,
-      datacount: [1],
-      ssn: [],
-      proPrice: 400,
-      bidTime: '4:30 AM'
+      users: [],
+      ssn: 42101,
+      proPrice: null,
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+
+  handleSubmit() {
+    if (this.state.proPrice === null || this.state.chosenDate === '') {
+      alert('Fields are empty');
+      return;
+    }
+    db.ref('/users').push({
+      SSN: this.state.ssn,
+      proPrice: this.state.proPrice,
+      bidTime: this.state.chosenDate
+    });
+
+    Alert.alert(
+      'Alert',
+      'Data Added Successfully',
+      [
+        {
+          text: 'OK', onPress: () => this.setState({
+            ssn: [],
+            proPrice: null,
+            chosenDate: ''
+          })
+        }
+      ],
+      { cancelable: false }
+    );
   }
 
   componentDidMount() {
-
-    const config = {
-      apiKey: "AIzaSyDhr0zYQYNjQZQTkGVVjvxTKVl40HHtoPM",
-      authDomain: "rn-application-2.firebaseapp.com",
-      databaseURL: "https://rn-application-2.firebaseio.com",
-      projectId: "rn-application-2",
-      storageBucket: "rn-application-2.appspot.com",
-      messagingSenderId: "1018617557182",
-    };
-
-    firebase.initializeApp(config);
-    const rootRef = firebase.database().ref('users');
-
-    const ssnRef = rootRef.child('ssn');
-    ssnRef.on('value', snapshot => {
-      this.setState({
-        ssn: snapshot.val()
-      });
+    itemsRef.on('value', (snapshot) => {
+      let data = snapshot.val();
+      let users = Object.values(data);
+      this.setState({ users });
     });
   }
 
@@ -84,7 +99,14 @@ class HomeScreen extends Component {
             <Text>Pro price  </Text>
             <View style={styles.labelView}>
               <Icon type='FontAwesome' name='dollar' style={{ fontSize: 15, color: 'gray' }} />
-              <TextInput style={styles.productlabels} />
+              <TextInput
+                style={styles.productlabels}
+                onChangeText={(text) => {
+                  this.setState({ proPrice: text });
+                }}
+                keyboardType ='number-pad'
+                value={this.state.proPrice}
+              />
             </View>
           </View>
           <View style={styles.productviews}>
@@ -113,10 +135,10 @@ class HomeScreen extends Component {
                 <Picker selectedValue={this.state.pickerSsn}
                   style={styles.pickerstyle}
                   mode={'dropdown'}
-                  onValueChange={(itemValue, itemIndex) => this.setState({ pickerSsn: itemValue })}>
-                  <Picker.Item label="1234" value="1" />
-                  <Picker.Item label="5678" value="2" />
-                  <Picker.Item label="9101" value="3" />
+                  onValueChange={(itemValue) => this.setState({ pickerSsn: itemValue })}>
+                  <Picker.Item label="42101" value="1" />
+                  <Picker.Item label="42102" value="2" />
+                  <Picker.Item label="42103" value="3" />
                 </Picker>
               </View>
               :
@@ -124,7 +146,7 @@ class HomeScreen extends Component {
           }
 
           <View style={styles.productviews}>
-            <TouchableOpacity style={styles.submitButton}>
+            <TouchableOpacity onPressOut={() => {Keyboard.dismiss()}} style={styles.submitButton} onPress={this.handleSubmit}>
               <Text style={{ textAlign: 'center', color: 'white' }}>ADD BUTTON    +</Text>
             </TouchableOpacity>
           </View>
@@ -139,13 +161,13 @@ class HomeScreen extends Component {
         <FlatList
           style={{ marginBottom: 10, width: width }}
           contentContainerStyle={{ alignItems: 'center' }}
-          data={this.state.datacount}
+          data={this.state.users}
           renderItem={({ item }) =>
             <View style={styles.priductItems}>
               <Image style={{ width: 50, height: 30 }} source={require('../pakflag.png')}></Image>
-              <Text>{this.state.ssn}</Text>
-              <Text>$ {this.state.proPrice}</Text>
-              <Text>{this.state.bidTime}</Text>
+              <Text>{item.SSN}</Text>
+              <Text>$ {item.proPrice}</Text>
+              <Text>{item.bidTime}</Text>
             </View>
           }
         ></FlatList>

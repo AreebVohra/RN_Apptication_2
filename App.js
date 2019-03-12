@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, StyleSheet, StatusBar } from 'react-native';
+import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
 import { Container, Header, Left, Title, Right, Body, Button, Icon } from 'native-base';
 import { createAppContainer, createMaterialTopTabNavigator, } from 'react-navigation';
 import HomeScreen from './screens/Home';
 import ProductScreen from './screens/Product';
 import HistoryScreen from './screens/History';
-import StatisticsScreen from './screens/Statistics'
+import StatisticsScreen from './screens/Statistics';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class App extends Component {
@@ -31,7 +31,7 @@ export default class App extends Component {
               </Body>
               <Right>
                 <Button transparent>
-                  <Icon style={{fontSize:30}} type='AntDesign' name='setting' />
+                  <Icon style={{ fontSize: 30 }} type='AntDesign' name='setting' />
                 </Button>
               </Right>
             </Header>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, CheckBox, TouchableOpacity, Picker, Image, Dimensions, FlatList, Alert,Keyboard } from 'react-native';
+import { StyleSheet, Text, View, TextInput, CheckBox, TouchableOpacity, Picker, Image, Dimensions, FlatList, Alert, Keyboard } from 'react-native';
 import { Icon } from 'native-base';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment from 'moment';
@@ -43,7 +43,6 @@ class HomeScreen extends Component {
       [
         {
           text: 'OK', onPress: () => this.setState({
-            ssn: [],
             proPrice: null,
             chosenDate: ''
           })
@@ -96,26 +95,25 @@ class HomeScreen extends Component {
         <Text style={styles.welcome}>Add a New Product</Text>
         <View style={styles.productsection}>
           <View style={styles.productviews}>
-            <Text>Pro price  </Text>
+            <Text style={{ width: 65 }}>Pro price</Text>
             <View style={styles.labelView}>
               <Icon type='FontAwesome' name='dollar' style={{ fontSize: 15, color: 'gray' }} />
               <TextInput
                 style={styles.productlabels}
-                onChangeText={(text) => {
-                  this.setState({ proPrice: text });
-                }}
-                keyboardType ='number-pad'
+                onChangeText={(text) => { this.setState({ proPrice: text }) }}
+                keyboardType='numeric'
+                maxLength={4}
                 value={this.state.proPrice}
               />
             </View>
           </View>
           <View style={styles.productviews}>
-            <Text>Bid time    </Text>
+            <Text style={{ width: 65 }}>Bid time</Text>
             <View style={styles.labelView}>
               <Icon type='FontAwesome' name='calendar' style={{ fontSize: 15, color: 'gray' }} />
-              <TextInput style={styles.productlabels} onFocus={this._showPicker}>
+              <Text style={styles.productlabels} onPress={this._showPicker}>
                 {this.state.chosenDate}
-              </TextInput>
+              </Text>
             </View>
             <DateTimePicker
               isVisible={this.state.isVisible}
@@ -146,7 +144,7 @@ class HomeScreen extends Component {
           }
 
           <View style={styles.productviews}>
-            <TouchableOpacity onPressOut={() => {Keyboard.dismiss()}} style={styles.submitButton} onPress={this.handleSubmit}>
+            <TouchableOpacity onPressOut={() => { Keyboard.dismiss() }} style={styles.submitButton} onPress={this.handleSubmit}>
               <Text style={{ textAlign: 'center', color: 'white' }}>ADD BUTTON    +</Text>
             </TouchableOpacity>
           </View>
@@ -154,7 +152,7 @@ class HomeScreen extends Component {
             <Icon type='FontAwesome' onPress={() => this._iconbtn()} name={iconName} style={{ fontSize: 25, color: 'gray' }} />
           </View>
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: 360, marginTop: 30, marginBottom: 10, }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', marginTop: 20, marginBottom: 10, }}>
           <Text>SSA</Text>
           <Text>View All  <Icon type='FontAwesome' name='angle-right' style={{ fontSize: 20, color: 'white' }} /></Text>
         </View>
@@ -163,7 +161,7 @@ class HomeScreen extends Component {
           contentContainerStyle={{ alignItems: 'center' }}
           data={this.state.users}
           renderItem={({ item }) =>
-            <View style={styles.priductItems}>
+            <View style={styles.productItems}>
               <Image style={{ width: 50, height: 30 }} source={require('../pakflag.png')}></Image>
               <Text>{item.SSN}</Text>
               <Text>$ {item.proPrice}</Text>
@@ -202,7 +200,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   productsection: {
-    width: 290,
+    width: '70%',
     backgroundColor: 'white',
     borderRadius: 10,
     alignItems: 'center',
@@ -215,7 +213,7 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     paddingLeft: 5,
     paddingRight: 0,
-    width: 160,
+    width: 125,
   },
   labelView: {
     flexDirection: 'row',
@@ -223,12 +221,13 @@ const styles = StyleSheet.create({
     borderColor: 'lightgray',
     borderWidth: 1,
     paddingLeft: 5,
-    width: 160,
+    width: 125,
+    height: 27
   },
   pickerView: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: 290,
+    width: '100%',
     padding: 5,
     justifyContent: 'center',
     borderTopColor: 'lightgray',
@@ -236,11 +235,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
   },
-  priductItems: {
+  productItems: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 360, height: 70,
+    width: '83%', height: 60,
     backgroundColor: '#EAEAEA',
     borderRadius: 5, elevation: 5,
     paddingLeft: 10,
@@ -251,6 +250,6 @@ const styles = StyleSheet.create({
   productviews: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 5,
+    margin: 3,
   },
 });
